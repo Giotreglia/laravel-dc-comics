@@ -20,10 +20,12 @@
             <td>{{$comic->price}}</td>
             <td>{{$comic->type}}</td>
             <td>
-                <a href="#" class="btn btn-primary">Dettagli</a>
+                <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary">Dettagli</a>
             </td>
         </tr>
         @endforeach
     </tbody>
   </table>
+
+  <a href="#" class="btn btn-success">Crea nuovo elemento</a>
 @endsection
