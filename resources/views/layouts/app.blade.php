@@ -8,6 +8,7 @@
     @vite('resources/js/app.js')
     <style>
         .ms_img {height: 50px;}
+        .ms_overflow {height: 400px; overflow: auto}
     </style>
 </head>
 <body>

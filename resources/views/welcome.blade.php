@@ -10,7 +10,7 @@
     <div class="col-3">
         <div class="card">
             <img src="{{$comic->thumb_src}}" class="card-img-top" alt="{{$comic->title}}">
-            <div class="card-body">
+            <div class="card-body ms_overflow">
               <h5 class="card-title">{{$comic->title}}</h5>
               <p class="card-text">{{$comic->description}}</p>
             </div>

@@ -6,7 +6,7 @@
 
 <div class="d-flex my-3">
     <div class="card mb-3 flex-row">
-        <img src="{{$comic->thumb_src}}" class="h-100" alt="{{$comic->title}}">
+        <img src="{{$comic->thumb_src}}" class="h-100 w-50" alt="{{$comic->title}}">
         <div class="card-body">
             <h5 class="card-title">{{$comic->title}}</h5>
             <p class="card-text">{{$comic->description}}</p>
