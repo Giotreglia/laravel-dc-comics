@@ -1,7 +1,10 @@
 <header>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><h1>DC Comics</h1></a>
+          <a class="navbar-brand d-flex align-items-md-center gap-3" href="#">
+            <img class="ms_img" src="https://upload.wikimedia.org/wikipedia/commons/3/3d/DC_Comics_logo.svg" alt="logo">
+            <h3>DC Comics</h3>
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

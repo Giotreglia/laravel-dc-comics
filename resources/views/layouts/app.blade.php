@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('page-title')</title>
     @vite('resources/js/app.js')
+    <style>
+        .ms_img {height: 50px;}
+    </style>
 </head>
 <body>
 
