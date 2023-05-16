@@ -27,5 +27,5 @@
     </tbody>
   </table>
 
-  <a href="#" class="btn btn-success">Crea nuovo elemento</a>
+  <a href="{{route('comics.create')}}" class="btn btn-success">Crea nuovo elemento</a>
 @endsection
