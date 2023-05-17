@@ -38,8 +38,9 @@
             <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Invia modifiche</button>
+        <button type="submit" class="btn btn-primary">Salva modifiche</button>
         <button type="reset" class="btn btn-warning">Annulla</button>
+
     </form>
 
 
