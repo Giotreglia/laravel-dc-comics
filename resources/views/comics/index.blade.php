@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($comics as $comic)
+            @foreach ($comics as $index => $comic)
                 <tr>
                     <th scope="row">{{ $comic->id }}</th>
                     <td>{{ $comic->title }}</td>
@@ -24,8 +24,8 @@
                         <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning">Modifica</a>
 
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteConfirm">Elimina</button>
-                        <div class="modal" tabindex="-1" id="deleteConfirm">
+                            data-bs-target="#deleteConfirm{{ $index }}">Elimina</button>
+                        <div class="modal" tabindex="-1" id="deleteConfirm{{ $index }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
