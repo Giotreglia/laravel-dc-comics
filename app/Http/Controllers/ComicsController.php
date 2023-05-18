@@ -36,22 +36,39 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:5',
-            'description' => 'required|max:65535',
-            'thumb_src' => 'required|url|max:255',
-            'price' => 'required|max:10',
-            'series' => 'required|max:50',
-            'type' => 'required|max:50',
+        $request->validate(
+            [
+                'title' => 'required|max:255',
+                'description' => 'required|max:65535',
+                'thumb_src' => 'required|url|max:255',
+                'price' => 'required|max:10',
+                'series' => 'required|max:50',
+                'type' => 'required|max:50',
 
-        ]);
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio',
+                'title.max' => 'La lunghezza massima è di 255 caratteri',
+                'description.required' => 'Il titolo è obbligatorio',
+                'description.max' => 'La lunghezza massima è di 65535 caratteri',
+                'thumb_src.required' => 'L\'URL è obbligatorio',
+                'thumb_src.url' => 'Il valore inserito non è un URL valido. Inserire URL valido',
+                'thumb_src.max' => 'La lunghezza massima è di 255 caratteri',
+                'price.required' => 'Il prezzo è obbligatorio',
+                'price.max' => 'La lunghezza massima è di 10 caratteri',
+                'series.required' => 'La serie è obbligatoria',
+                'series.max' => 'La lunghezza massima è di 50 caratteri',
+                'type.required' => 'Il tipo è obbligatorio',
+                'type.max' => 'La lunghezza massima è di 50 caratteri'
+            ]);
+
         $form_data = $request->all();
 
         $newComic = new Comic();
         $newComic->fill($form_data);
         $newComic->save();
 
-        return redirect()->route('comics.show', ['comic' => $newComic->id]);
+        return redirect()->route('comics.show', ['comic' => $newComic->id])->with('status', 'Fumetto aggiunto con successo!');;
     }
 
     /**
@@ -90,7 +107,8 @@ class ComicsController extends Controller
     {
         $comic = Comic::findOrFail($id);
 
-        $request->validate([
+        $request->validate(
+        [
             'title' => 'required|max:255',
             'description' => 'required|max:65535',
             'thumb_src' => 'required|url|max:255',
@@ -98,12 +116,28 @@ class ComicsController extends Controller
             'series' => 'required|max:50',
             'type' => 'required|max:50',
 
-        ]);
+        ],
+        [
+            'title.required' => 'Il titolo è obbligatorio',
+                'title.max' => 'La lunghezza massima è di 255 caratteri',
+                'description.required' => 'Il titolo è obbligatorio',
+                'description.max' => 'La lunghezza massima è di 65535 caratteri',
+                'thumb_src.required' => 'L\'URL è obbligatorio',
+                'thumb_src.url' => 'Il valore inserito non è un URL valido. Inserire URL valido',
+                'thumb_src.max' => 'La lunghezza massima è di 255 caratteri',
+                'price.required' => 'Il prezzo è obbligatorio',
+                'price.max' => 'La lunghezza massima è di 10 caratteri',
+                'series.required' => 'La serie è obbligatoria',
+                'series.max' => 'La lunghezza massima è di 50 caratteri',
+                'type.required' => 'Il tipo è obbligatorio',
+                'type.max' => 'La lunghezza massima è di 50 caratteri'
+        ]
+        );
 
         $form_data = $request->all();
         $comic->update($form_data);
 
-        return redirect()->route('comics.show', ['comic' => $comic->id]);
+        return redirect()->route('comics.show', ['comic' => $comic->id])->with('status', 'Fumetto aggiornato con successo!');
     }
 
     /**
