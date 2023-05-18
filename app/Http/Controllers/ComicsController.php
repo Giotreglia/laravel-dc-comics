@@ -91,7 +91,7 @@ class ComicsController extends Controller
         $comic = Comic::findOrFail($id);
 
         $request->validate([
-            'title' => 'required|max:5',
+            'title' => 'required|max:255',
             'description' => 'required|max:65535',
             'thumb_src' => 'required|url|max:255',
             'price' => 'required|max:10',
