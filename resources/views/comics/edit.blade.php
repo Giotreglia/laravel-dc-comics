@@ -19,8 +19,8 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
-                name="description">
+            <textarea type="text" id="floatingTextarea" class="form-control @error('description') is-invalid @enderror"
+                id="description" name="description">
                 {{ old('description', $comic->description) }}
             </textarea>
             @error('description')

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ComicsController extends Controller
 {
@@ -34,35 +37,9 @@ class ComicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->validate(
-            [
-                'title' => 'required|max:255',
-                'description' => 'required|max:65535',
-                'thumb_src' => 'required|url|max:255',
-                'price' => 'required|max:10',
-                'series' => 'required|max:50',
-                'type' => 'required|max:50',
-
-            ],
-            [
-                'title.required' => 'Il titolo è obbligatorio',
-                'title.max' => 'La lunghezza massima è di 255 caratteri',
-                'description.required' => 'Il titolo è obbligatorio',
-                'description.max' => 'La lunghezza massima è di 65535 caratteri',
-                'thumb_src.required' => 'L\'URL è obbligatorio',
-                'thumb_src.url' => 'Il valore inserito non è un URL valido. Inserire URL valido',
-                'thumb_src.max' => 'La lunghezza massima è di 255 caratteri',
-                'price.required' => 'Il prezzo è obbligatorio',
-                'price.max' => 'La lunghezza massima è di 10 caratteri',
-                'series.required' => 'La serie è obbligatoria',
-                'series.max' => 'La lunghezza massima è di 50 caratteri',
-                'type.required' => 'Il tipo è obbligatorio',
-                'type.max' => 'La lunghezza massima è di 50 caratteri'
-            ]);
-
-        $form_data = $request->all();
+        $form_data = $request->validated();
 
         $newComic = new Comic();
         $newComic->fill($form_data);
@@ -103,38 +80,9 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
-
-        $request->validate(
-        [
-            'title' => 'required|max:255',
-            'description' => 'required|max:65535',
-            'thumb_src' => 'required|url|max:255',
-            'price' => 'required|max:10',
-            'series' => 'required|max:50',
-            'type' => 'required|max:50',
-
-        ],
-        [
-            'title.required' => 'Il titolo è obbligatorio',
-                'title.max' => 'La lunghezza massima è di 255 caratteri',
-                'description.required' => 'Il titolo è obbligatorio',
-                'description.max' => 'La lunghezza massima è di 65535 caratteri',
-                'thumb_src.required' => 'L\'URL è obbligatorio',
-                'thumb_src.url' => 'Il valore inserito non è un URL valido. Inserire URL valido',
-                'thumb_src.max' => 'La lunghezza massima è di 255 caratteri',
-                'price.required' => 'Il prezzo è obbligatorio',
-                'price.max' => 'La lunghezza massima è di 10 caratteri',
-                'series.required' => 'La serie è obbligatoria',
-                'series.max' => 'La lunghezza massima è di 50 caratteri',
-                'type.required' => 'Il tipo è obbligatorio',
-                'type.max' => 'La lunghezza massima è di 50 caratteri'
-        ]
-        );
-
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $comic->update($form_data);
 
         return redirect()->route('comics.show', ['comic' => $comic->id])->with('status', 'Fumetto aggiornato con successo!');
